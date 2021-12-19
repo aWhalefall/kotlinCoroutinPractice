@@ -13,6 +13,7 @@ return
 suspend fun suspendfun02(a:String,b:String)= suspendCoroutine<Int> {
     continuation ->
     thread {
+        //println("$a  $b")
         continuation.resumeWith(Result.success(5))
     }
 }
