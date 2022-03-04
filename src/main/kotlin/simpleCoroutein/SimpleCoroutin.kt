@@ -1,8 +1,6 @@
 package simpleCoroutein
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 
 //sampleStart
@@ -20,6 +18,7 @@ import kotlinx.coroutines.runBlocking
 限定协程生命周期的特定CoroutineScope 中启动
 */
 
+/*
 fun main() = runBlocking { // this: CoroutineScope
     launch {
         doWorld()
@@ -30,4 +29,47 @@ fun main() = runBlocking { // this: CoroutineScope
 private suspend fun doWorld() {
     delay(1000)
     println("world!")
+}*/
+
+//sampleStart
+// Sequentially executes doWorld followed by "Done"
+fun main3() = runBlocking {
+    doWorld()
+    println("Done")
+}
+
+// Concurrently executes both sections
+suspend fun doWorld() = coroutineScope { // this: CoroutineScope
+    launch {
+        delay(2000L)
+        println("World 2")
+    }
+    launch {
+        delay(1000L)
+        println("World 1")
+    }
+    println("Hello")
+}
+
+
+fun main4() = runBlocking {
+//sampleStart
+    val job = launch { // launch a new coroutine and keep a reference to its Job
+        delay(1000L)
+        println("World!")
+    }
+    println("Hello")
+    job.join() // wait until child coroutine completes
+
+    println("Done")
+//sampleEnd
+}
+
+fun main() = runBlocking {
+    repeat(100_000) { // 启动大量的协程
+        launch {
+            delay(5000L)
+            print(".")
+        }
+    }
 }
