@@ -52,13 +52,29 @@ fun main5() {
 }
 //sampleEnd
 
-fun main() = runBlocking {
-//sampleStart
-    withTimeout(1300L) {
-        repeat(1000) { i ->
-            println("I'm sleeping $i ...")
-            delay(500L)
+fun main() {
+////sampleStart
+//    withTimeout(1300L) {
+//        repeat(1000) { i ->
+//            println("I'm sleeping $i ...")
+//            delay(500L)
+//        }
+//    }
+////sampleEnd
+
+   println(IsSpecialUri(" sgdmqk://map/info?mapId=24095001545801985 "))
+}
+
+fun IsSpecialUri(url: String): Boolean {
+    val matchSchemes = arrayOf(
+        "dmqk://",
+        "endmqk://",
+        "sgdmqk://"
+    )
+    for (matchScheme in matchSchemes) {
+        if (url.trim().startsWith(matchScheme)) {
+            return true
         }
     }
-//sampleEnd
+    return false
 }
