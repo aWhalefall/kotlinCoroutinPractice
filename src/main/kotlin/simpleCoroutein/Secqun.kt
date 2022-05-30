@@ -28,7 +28,7 @@ fun main() = runBlocking<Unit> {
        // println("The answer is ${one + two}")
 //        val one = doSomethingUsefulOne()
 //        val two = doSomethingUsefulTwo()
-        val one = async(start = CoroutineStart.DEFAULT) { doSomethingUsefulOne() }
+        val one = async { doSomethingUsefulOne() }
         val two = async { doSomethingUsefulTwo() }
 
         println("The answer is ${two.await()} ${one.await()} ")
@@ -38,11 +38,11 @@ fun main() = runBlocking<Unit> {
 }
 
 suspend fun doSomethingUsefulOne(): Int {
-    delay(1000L) // 假设我们在这里做了些有用的事
+    delay(600L) // 假设我们在这里做了些有用的事
     return 13
 }
 
 suspend fun doSomethingUsefulTwo(): Int {
-    delay(1000L) // 假设我们在这里也做了一些有用的事
+    delay(2000L) // 假设我们在这里也做了一些有用的事
     return 29
 }
