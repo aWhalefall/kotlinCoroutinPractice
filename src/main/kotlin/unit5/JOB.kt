@@ -11,23 +11,3 @@ fun main() = runBlocking {
 
 }
 
-interface Job : CoroutineContext.Element {
-
-    companion object Key : CoroutineContext.Key<Job>
-
-    override val key: CoroutineContext.Key<*>
-        get() = Job
-
-    val isActivity:Boolean
-
-    fun invokeOnCancel(onCancel:OnCancel):Disposable
-
-    fun invokeOnComplete(onComplete:OnConplete):Disposable
-
-    fun cancel()
-
-    fun remove(disposable:Disposable)
-
-    suspend fun join()
-
-}

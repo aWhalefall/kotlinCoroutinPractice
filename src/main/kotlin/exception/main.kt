@@ -10,6 +10,9 @@ import java.io.*
 
 @OptIn(DelicateCoroutinesApi::class)
 fun main() = runBlocking {
+
+    launch {  }
+    async {  }
     val handler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
     }
