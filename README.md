@@ -10,6 +10,7 @@ kotlincoroutinPratice 深入理解kotlin协程练习
  3. 协程基础api内部实现和理解
  4. 协程的分类：有栈协程和无栈协程，概念不明晰
  5. 协程上下文Key，Element元素的理解
+ 6. 协程异常传递逻辑
  
  
  
