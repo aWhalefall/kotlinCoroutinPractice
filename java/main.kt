@@ -1,6 +1,3 @@
-import java.sql.DriverManager.println
-
-
 fun main(args: Array<String>) {
     val test= MediatorLiveDataTest()
 //    test.change()
